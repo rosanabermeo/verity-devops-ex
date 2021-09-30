@@ -43,7 +43,7 @@ pipeline {
 		stage('Code Analysis') {
             steps {
                 script {
-			scannerHome=tool 'sonar-scaneer'
+			scannerHome=tool 'sonar-scanner'
 			}
 			withSonarQubeEnv( 'My SonarQube Server')
 			{
@@ -52,6 +52,11 @@ pipeline {
 			
 		}
         }
+	//
+		stage('Code Coverage')
+	   steps {
+			sh 'mvn jacoco:report'
+		}	
 	//
     }
 }
