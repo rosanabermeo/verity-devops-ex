@@ -92,8 +92,16 @@ pipeline {
 		stage('System Test')
 		{
 	   steps {
-			git url: 'https://github.com/rosanabermeo/EMSystenTests-ex.git'
+			git url: 'https://github.com/rosanabermeo/EMSystemTests-ex.git'
 			sh 'mvn -Dtest=ExpenseManagerAPITest test'
+		}	
+	}
+	//
+		stage('BDD Test')
+		{
+	   steps {
+			git url: 'https://github.com/rosanabermeo/EMSystemTests_BDD.git'
+			sh 'mvn -Dtest=TestRunner test'
 		}	
 	}
 	//
