@@ -67,5 +67,35 @@ pipeline {
 		}	
 	}
 	//
+		stage('Launch Tomcat Server')
+		{
+	   steps {
+			sh '/tmp/apache-tomcat-9.0.20/bin/startup.sh'
+		}	
+	}
+	//
+		stage('Deploy War on Tomcat Server')
+		{
+	   steps {
+			sh 'cp /var/jenkins_home/workspace/verity-devops-ex/target/ExpenseApp-1.war /tmp/apache-tomcat-9.0.20/webapps'
+		}	
+	}
+	//
+		stage('API Test')
+		{
+	   steps {
+			git url: 'https://github.com/rosanabermeo/EMAPITests-ex.git'
+			sh 'mvn -Dtest_ExpenseManagerAPITest test'
+		}	
+	}
+	//
+		stage('System Test')
+		{
+	   steps {
+			git url: 'https://github.com/rosanabermeo/EMSystenTests-ex.git'
+			sh 'mvn -Dtest=ExpenseManagerAPITest test'
+		}	
+	}
+	//
     }
 }
