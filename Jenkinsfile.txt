@@ -93,7 +93,7 @@ pipeline {
 		{
 	   steps {
 			git url: 'https://github.com/rosanabermeo/EMSystemTests-ex.git'
-			sh 'mvn -Dtest=ExpenseManagerSystemTest test'
+			sh 'mvn -Dtest_ExpenseManagerSystemTest test'
 		}	
 	}
 	//
@@ -101,7 +101,7 @@ pipeline {
 		{
 	   steps {
 			git url: 'https://github.com/rosanabermeo/EMSystemTests_BDD.git'
-			sh 'mvn -Dtest=TestRunner test'
+			sh 'mvn -Dtest_TestRunner test'
 		}	
 	}
 	//
