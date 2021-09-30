@@ -40,5 +40,18 @@ pipeline {
 		}
         }
 	//
+		stage('Code Analysis') {
+            steps {
+                script {
+			scannerHome=tool 'sonar-scaneer'
+			}
+			withSonarQubeEnv( 'My SonarQube Server')
+			{
+			sh "${scannerHome}/bin/sonar-scanner"
+			}
+			}
+		}
+        }
+	//
     }
 }
